@@ -4,5 +4,7 @@
 **/*.jpg
 **/*.gif
 user-config/*.el
+**/build/
+lib/c/
 
 /.agent-shell/

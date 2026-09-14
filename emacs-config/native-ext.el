@@ -2,9 +2,8 @@
 
 (require 'user-custom-functions)
 
-(custom/load-dynamic-module :module-name "bootstrap")
+(add-to-list 'load-path
+             (expand-file-name "local/extensions/xwidget-webkit-fix"
+                               dotspacemacs-directory))
 
-(defun c-ext/bootstrap/hello ()
-  (unless (boundp '--c-ext-bootstrap--hello-fn)
-    (error "C extension 'bootstrap' is not loaded"))
-  (funcall --c-ext-bootstrap--hello-fn))
+(require 'xwidget-webkit-fix)

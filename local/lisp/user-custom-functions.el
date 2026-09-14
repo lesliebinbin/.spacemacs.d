@@ -62,6 +62,23 @@
   (and (fboundp 'module-load)
        module-file-suffix))
 
+(defun custom/cmake-build (source-dir preset-name install-prefix)
+  "Configure and build via CMakePresets.json, then install to INSTALL-PREFIX."
+  (let* ((default-directory (file-name-as-directory (expand-file-name source-dir)))
+         (build-dir (format "build/%s" preset-name))
+         (output-buffer "*cmake-build*"))
+    (message "Building CMake extension in %s (preset: %s)..." source-dir preset-name)
+    (if (and (zerop (call-process "cmake" nil output-buffer t "--preset" preset-name))
+             (zerop (call-process "cmake" nil output-buffer t "--build" "--preset" preset-name))
+             (zerop (call-process "cmake" nil output-buffer t "--install" build-dir
+                                  "--prefix" (expand-file-name install-prefix))))
+        (progn
+          (message "CMake build and install succeeded for %s" source-dir)
+          t)
+      (message "CMake build failed for %s. Check buffer %s for details"
+               source-dir output-buffer)
+      nil)))
+
 (cl-defun custom/load-dynamic-module
     (&key (module-name (error "Module name is required"))
           (extension-dir (expand-file-name "lib/c" dotspacemacs-directory))
