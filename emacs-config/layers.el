@@ -158,7 +158,12 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    `(
-     (jupyter-eval :location (recipe :fetcher github-ssh :repo "lesliebinbin/emacs-jupyter-eval" :branch "master" :files ("*")))
+     (jupyter-eval :location
+                   (recipe
+                    :fetcher github-ssh
+                    :repo "lesliebinbin/emacs-jupyter-eval"
+                    :commit "fe6a86a"
+                    :branch "fix-display-video-not-playing" :files ("*")))
      (origami :location (recipe :fetcher github-ssh :repo "lesliebinbin/origami.el" :files ("*")))
      (grpc-bridge :location (recipe :fetcher github-ssh :repo "lesliebinbin/emacs-grpc-ext" :files ("*")))
      simple-httpd
