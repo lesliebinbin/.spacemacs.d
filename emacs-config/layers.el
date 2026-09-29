@@ -162,8 +162,8 @@ This function should only modify configuration layer settings."
                    (recipe
                     :fetcher github-ssh
                     :repo "lesliebinbin/emacs-jupyter-eval"
-                    :commit "fe6a86a"
-                    :branch "fix-display-video-not-playing" :files ("*")))
+                    :commit "62823f9"
+                    :branch "master" :files ("*")))
      (origami :location (recipe :fetcher github-ssh :repo "lesliebinbin/origami.el" :files ("*")))
      (grpc-bridge :location (recipe :fetcher github-ssh :repo "lesliebinbin/emacs-grpc-ext" :files ("*")))
      simple-httpd
